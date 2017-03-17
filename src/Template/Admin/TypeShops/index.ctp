@@ -21,11 +21,11 @@
                 <td><?= $this->Number->format($typeShop->id) ?></td>
                 <td><?= h($typeShop->type) ?></td>
                 <td><?= h($typeShop->name) ?></td>
-                <td class="actions">
+                <!--<td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $typeShop->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $typeShop->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $typeShop->id], ['confirm' => __('Are you sure you want to delete # {0}?', $typeShop->id)]) ?>
-                </td>
+                </td>-->
             </tr>
             <?php endforeach; ?>
         </tbody>

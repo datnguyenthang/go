@@ -73,7 +73,8 @@ class ShopItemsController extends AppController
             $this->Flash->error(__('The shop item could not be saved. Please, try again.'));
         }
         $shops = $this->ShopItems->Shops->find('list', ['limit' => 200]);
-        $this->set(compact('shopItem', 'shops'));
+        $tradetypes = $this->ShopItems->TradeTypes->find('list', ['limit' => 200]);
+        $this->set(compact('shopItem', 'shops', 'tradetypes'));
         $this->set('_serialize', ['shopItem']);
     }
 

@@ -45,6 +45,10 @@ class ShopItemsTable extends Table
             'foreignKey' => 'shop_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('TradeTypes', [
+            'foreignKey' => 'trade_type_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -103,6 +107,7 @@ class ShopItemsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['shop_id'], 'Shops'));
+        $rules->add($rules->existsIn(['trade_type_id'], 'TradeTypes'));
 
         return $rules;
     }

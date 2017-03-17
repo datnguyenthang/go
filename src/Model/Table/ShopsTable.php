@@ -120,7 +120,6 @@ class ShopsTable extends Table
             ->allowEmpty('phonehome');
 
         $validator
-            ->integer('contactperson')
             ->allowEmpty('contactperson');
 
         $validator
