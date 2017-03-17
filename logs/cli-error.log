@@ -1,0 +1,67 @@
+2017-02-28 08:21:01 Warning: Warning (512): Association property name "type" clashes with field of same name of table "order_details". You should explicitly specify the "propertyName" option. in [/var/www/goolutu.com/public_html/vendor/cakephp/cakephp/src/ORM/Association.php, line 721]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 153
+Cake\ORM\Association::getProperty() - CORE/src/ORM/Association.php, line 721
+Cake\ORM\Association::property() - CORE/src/ORM/Association.php, line 744
+Bake\Shell\Task\ModelTask::getEntityPropertySchema() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 515
+Bake\Shell\Task\ModelTask::getTableContext() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 132
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 110
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 97
+Bake\Shell\Task\ModelTask::all() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 165
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 458
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 465
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2017-02-28 08:27:13 Warning: Warning (512): Association property name "type" clashes with field of same name of table "order_details". You should explicitly specify the "propertyName" option. in [/var/www/goolutu.com/public_html/vendor/cakephp/cakephp/src/ORM/Association.php, line 721]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 153
+Cake\ORM\Association::getProperty() - CORE/src/ORM/Association.php, line 721
+Cake\ORM\Association::property() - CORE/src/ORM/Association.php, line 744
+Bake\Utility\Model\AssociationFilter::filterAssociations() - ROOT/vendor/cakephp/bake/src/Utility/Model/AssociationFilter.php, line 96
+Bake\Shell\Task\TemplateTask::_filteredAssociations() - ROOT/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php, line 477
+Bake\Shell\Task\TemplateTask::_loadController() - ROOT/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php, line 298
+Bake\Shell\Task\TemplateTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php, line 148
+Bake\Shell\Task\TemplateTask::all() - ROOT/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php, line 259
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 458
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 465
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2017-03-02 09:09:28 Warning: Warning (512): Association property name "type" clashes with field of same name of table "order_details". You should explicitly specify the "propertyName" option. in [/var/www/goolutu.com/public_html/vendor/cakephp/cakephp/src/ORM/Association.php, line 721]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 153
+Cake\ORM\Association::getProperty() - CORE/src/ORM/Association.php, line 721
+Cake\ORM\Association::property() - CORE/src/ORM/Association.php, line 744
+Bake\Shell\Task\ModelTask::getEntityPropertySchema() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 515
+Bake\Shell\Task\ModelTask::getTableContext() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 132
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 110
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 97
+Bake\Shell\Task\ModelTask::all() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 165
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 458
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 465
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2017-03-12 04:21:55 Error: [Cake\Core\Exception\MissingPluginException] Plugin Utils could not be found.
+Exception Attributes: array (
+  'plugin' => 'Utils',
+)
+Stack Trace:
+#0 /var/www/goolutu.com/public_html/config/bootstrap.php(215): Cake\Core\Plugin::load('Utils')
+#1 /var/www/goolutu.com/public_html/bin/cake.php(32): include('/var/www/goolut...')
+#2 {main}
+
+
