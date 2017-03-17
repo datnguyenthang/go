@@ -9,11 +9,15 @@ $(document).ready(function(){
                     'state_id' : state_id
                   },
             success: function(data){
-                $("#district-id").append( 
-                    $("<option></option>")
-                        .text(data.name)
-                        .val(data.id)
-                );
+                $("#district-id").find('option').remove();console.log(data);
+                $.each(data, function(id, name) {
+                    $("#district-id").append( 
+                        $("<option></option>")
+                            .text(name)
+                            .val(id)
+                    );
+                });
+                
         }});
     });
 });
