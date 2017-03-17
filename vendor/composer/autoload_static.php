@@ -66,6 +66,7 @@ class ComposerStaticInitcf6af8c342c706855bf1b79d56407fed
         array (
             'DebugKit\\Test\\Fixture\\' => 22,
             'DebugKit\\' => 9,
+            'Dala00\\Upload\\' => 14,
         ),
         'C' => 
         array (
@@ -186,6 +187,10 @@ class ComposerStaticInitcf6af8c342c706855bf1b79d56407fed
         'DebugKit\\' => 
         array (
             0 => __DIR__ . '/..' . '/cakephp/debug_kit/src',
+        ),
+        'Dala00\\Upload\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dala00/cakephp-simple-upload/src',
         ),
         'Composer\\Spdx\\' => 
         array (
