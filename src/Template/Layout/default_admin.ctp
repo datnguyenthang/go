@@ -30,6 +30,7 @@ $cakeDescription = 'Goolutu: Chuyên trang dành cho dịch vụ du lịch';
     <?php // echo $this->Html->css('style.css');?>
     <?php echo $this->Html->css('styleadmin.css');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
+    <?php echo $this->Html->script('admin.js');?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

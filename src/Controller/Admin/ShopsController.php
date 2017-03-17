@@ -142,4 +142,15 @@ class ShopsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+     
+    public function find_district($state_id = null)
+    {
+        $this->loadComponent('RequestHandler');
+        $this->layout = 'ajax';
+        $districts = [];
+        if($this->request->is('Ajax')) {
+            $districts = $this->Shops->Districts->find('list', ['state_id' => $state_id, 'limit' => 200]);
+        }
+        return $districts;
+    }
 }
