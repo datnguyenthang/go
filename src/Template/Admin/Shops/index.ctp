@@ -46,7 +46,7 @@
                 <td><?= $this->Number->format($shop->phone) ?></td>
                 <td><?= $this->Number->format($shop->phonehome) ?></td>
                 <td><?= $this->Number->format($shop->contactperson) ?></td>-->
-                <td><?php echo $this->Html->link('Enter Image', $shop->img, ['class' => 'button', 'target' => '_blank']);?></td>
+                <td><?= $this->Html->link($shop->img, $this->Upload->url($shop, 'img'));?></td>
                 <td><?= $shop->has('type_shop') ? $this->Html->link($shop->type_shop->name, ['controller' => 'TypeShops', 'action' => 'view', $shop->type_shop->id]) : '' ?></td>
                 <td><?= h($shop->deleted) ?></td>
                 <td><?= $this->Number->format($shop->publish) ?></td>
@@ -54,7 +54,7 @@
                 <td><?= $this->Number->format($shop->reject) ?></td>
                 <td><?= $this->Number->format($shop->count_request) ?></td>
                 <td><?= h($shop->requested) ?></td>
-                <td><?= h($shop->created) ?></td>
+                <td><?= h(date('d-m-Y H:i', strtotime($shop->created))) ?></td>
                 <td><?= h($shop->updated) ?></td>
                 <td><?= h($shop->deleted_date) ?></td>
                 <td class="actions">

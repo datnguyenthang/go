@@ -238,15 +238,20 @@ class UploadBehavior extends Behavior
             '{model}',
             '{primaryKey}',
             '{field}',
+            '{foreignKey}',
         ];
+        //SET VALUE FOREIGN KEY
+        $foreigKey = isset($settings['foreignKey']) ? $entity->get($settings['foreignKey']) : '';
         $to = [
             DS,
             $this->_table->alias(),
             $entity->get($this->_table->primaryKey()),
             $field,
+            $foreigKey,
         ];
-        $path = str_replace($from, $to, $settings['path']);
-
+        
+        //LOWER CASE PATH
+        $path = strtolower(str_replace($from, $to, $settings['path']));
         return ROOT . DS . $path;
     }
 

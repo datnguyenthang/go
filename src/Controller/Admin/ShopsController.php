@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 //use phpFlickr;
 use App\Controller\AppController;
+use Cake\Filesystem\File;
 //require_once(ROOT . '/'. 'vendor' . DS  . 'phpflickr' . DS . 'flickr_api.php');
 
 /**
@@ -11,7 +12,7 @@ use App\Controller\AppController;
  */
 class ShopsController extends AppController
 {
-
+    public $helpers = ['Dala00/Upload.Upload'];
     /**
      * Index method
      *
@@ -104,9 +105,10 @@ class ShopsController extends AppController
                     $shop['img'] = $upload['img'];
                 }
                 */
-                //if (!$this->request->data['img']['name']){ 
-                //    unset($shop['img']);var_dump($this->request->data['img']['name']);
-                //} 
+                if ($this->request->data['img']['name']){
+                    $file = new File(WWW_ROOT . $this->request->data['img_path'], false);
+                    $file->delete();
+                } 
                 if ($this->Shops->save($shop)) { 
                     $this->Flash->success(__('The shop has been saved.'));
 
@@ -135,6 +137,8 @@ class ShopsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $shop = $this->Shops->get($id);
         if ($this->Shops->delete($shop)) {
+            $file = new File(WWW_ROOT . $shop['img'], false);
+            $file->delete();
             $this->Flash->success(__('The shop has been deleted.'));
         } else {
             $this->Flash->error(__('The shop could not be deleted. Please, try again.'));

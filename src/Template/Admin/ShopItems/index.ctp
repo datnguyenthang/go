@@ -14,6 +14,7 @@
                 <th scope="col"><?= $this->Paginator->sort('tradetype') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('brandname') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('productname') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('img') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('pricefrom') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('priceto') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('deleted') ?></th>
@@ -31,6 +32,7 @@
                 <td><?= h($shopItem->tradetype) ?></td>
                 <td><?= h($shopItem->brandname) ?></td>
                 <td><?= h($shopItem->productname) ?></td>
+                <td><?= $this->Html->link($shopItem->img, $this->Upload->url($shopItem, 'img'));?></td>
                 <td><?= $this->Number->format($shopItem->pricefrom) ?></td>
                 <td><?= $this->Number->format($shopItem->priceto) ?></td>
                 <td><?= $this->Number->format($shopItem->deleted) ?></td>

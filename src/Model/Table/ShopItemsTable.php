@@ -33,6 +33,14 @@ class ShopItemsTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
+        $this->addBehavior('Dala00/Upload.Upload', [
+			'fields' => [
+				'img' => [
+                    'foreignKey' => 'shop_id',
+					'path' => 'webroot{DS}img{DS}upload{DS}Shops{DS}{foreignKey}{DS}{model}{DS}'
+				],
+			],
+		]);
         
 
         $this->table('shop_items');

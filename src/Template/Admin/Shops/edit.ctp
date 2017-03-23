@@ -20,7 +20,8 @@
             echo $this->Form->input('phonehome');
             echo $this->Form->input('contactperson');
             echo $this->Form->input('img', ['type' => 'file', 'empty' => true]);
-            if ($shop->img) echo $this->Html->image($this->Url->build($shop->img), ["alt" => "", 'url' => []]);
+            echo $this->Form->input('img_path', ['type' => 'hidden', 'value' => $this->Upload->url($shop, 'img')]);
+            if ($shop->img) echo $this->Upload->image($shop, 'img');
             echo $this->Form->input('type_shop_id', ['options' => $typeShops, 'empty' => true]);
         ?>
     </fieldset>

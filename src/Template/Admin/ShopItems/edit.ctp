@@ -14,7 +14,8 @@
             echo $this->Form->input('brandname');
             echo $this->Form->input('productname');
             echo $this->Form->input('img', ['type' => 'file']);
-            echo $this->Html->image($this->Url->build($shopItem->img), ["alt" => "", 'url' => []]);
+            echo $this->Form->input('img_path', ['type' => 'hidden', 'value' => $this->Upload->url($shopItem, 'img')]);
+            if ($shopItem->img) echo $this->Upload->image($shopItem, 'img');
             echo $this->Form->input('pricefrom');
             echo $this->Form->input('priceto');
         ?>
