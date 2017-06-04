@@ -10,7 +10,7 @@
         <legend><?= __('Add Shop Item') ?></legend>
         <?php
             echo $this->Form->input('shop_id', ['options' => $shops]);
-            echo $this->Form->input('tradetype', ['options' => $tradetypes]);
+            echo $this->Form->input('trade_type_id', ['options' => $tradetypes]);
             echo $this->Form->input('brandname');
             echo $this->Form->input('productname');
             echo $this->Form->input('img', ['type' => 'file']);

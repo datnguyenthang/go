@@ -20,20 +20,37 @@ $cakeDescription = 'Goolutu: Chuyên trang dành cho dịch vụ du lịch';
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="fb:app_id" content="1547070838636535" />
+    <meta property="fb:admins" content="USER ID"/>
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <?php 
+          echo $this->Html->script('//code.jquery.com/jquery-1.10.2.js');
+          echo $this->Html->script('//code.jquery.com/ui/1.11.4/jquery-ui.js');
+          echo $this->Html->css('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');
+    ?>
     <?php echo $this->Html->css('bootstrap.min.css');?>
     <?php echo $this->Html->css('style.css');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1547070838636535";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <body>
     <?= $this->element('layout/_header', [], ['plugin' => false]);?>
     <?= $this->Flash->render() ?>

@@ -17,14 +17,17 @@ class ShopItemsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
+    public function index($id = null)
     {
         $this->paginate = [
             'contain' => ['Shops']
         ];
+        if ($id) $this->paginate = ['conditions' => ['shop_id' => $id]];
         $shopItems = $this->paginate($this->ShopItems);
-
-        $this->set(compact('shopItems'));
+        
+        $tradetypes = $this->ShopItems->TradeTypes->find('list', ['limit' => 200])->toArray();
+        
+        $this->set(compact('shopItems', 'tradetypes'));
         $this->set('_serialize', ['shopItems']);
     }
 
@@ -40,8 +43,10 @@ class ShopItemsController extends AppController
         $shopItem = $this->ShopItems->get($id, [
             'contain' => ['Shops']
         ]);
-
+        
+        $tradetypes = $this->ShopItems->TradeTypes->find('list', ['limit' => 200]);
         $this->set('shopItem', $shopItem);
+        $this->set('tradetypes', $tradetypes);
         $this->set('_serialize', ['shopItem']);
     }
 
@@ -68,7 +73,7 @@ class ShopItemsController extends AppController
                 if ($this->ShopItems->save($shopItem)) {
                     $this->Flash->success(__('The shop item has been saved.'));
 
-                    return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'index', $shopItem->shop_id]);
                 }
             }
             $this->Flash->error(__('The shop item could not be saved. Please, try again.'));
@@ -110,7 +115,7 @@ class ShopItemsController extends AppController
                 if ($this->ShopItems->save($shopItem)) {
                     $this->Flash->success(__('The shop item has been saved.'));
 
-                    return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'index',  $shopItem->shop_id]);
                 }
             }    
             $this->Flash->error(__('The shop item could not be saved. Please, try again.'));

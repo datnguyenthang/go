@@ -18,7 +18,7 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-
+use Cake\ORM\TableRegistry;
 /**
  * Static content controller
  *
@@ -36,6 +36,12 @@ class SitesController extends AppController {
      *
      * @return void
      */
+     public $paginate = [
+        // Other keys here.
+        'limit' => 4
+    ];
+    public $helpers = ['Dala00/Upload.Upload'];
+
     public function initialize()
     {
         parent::initialize();
@@ -51,6 +57,60 @@ class SitesController extends AppController {
         //$this->loadComponent('Csrf');
     }
     public function index() {
-    
+        $shops = TableRegistry::get('Shops');
+        //$this->loadModel('Shops');
+        $searchtxt = isset($this->request->query['name']) ? $this->request->query['name'] : '';
+        if ($this->request->is('get') || $searchtxt) {
+            $query = $this->paginate(
+                $shops->find()
+                    //->hydrate(false)
+                    ->join([
+                        'd' => [
+                            'table' => 'districts',
+                            'type' => 'LEFT',
+                            'conditions' => 'd.id = Shops.district_id',
+                        ],
+                        's' => [
+                            'table' => 'states',
+                            'type' => 'LEFT',
+                            'conditions' => 's.id = Shops.state_id',
+                        ]
+                    ])
+                    ->where(['d.name =' => $searchtxt])
+                    ->orWhere(['s.name =' => $searchtxt])
+            );
+        }
+        $this->request->data['name'] = $searchtxt;
+        $this->set(compact('query'));
+        $this->set('_serialize', ['query']);
+    }
+    public function autocomplete() {
+        if ($this->request->is('ajax')) {
+            $this->autoRender = false;
+            $this->loadModel('Districts');
+            $this->loadModel('States');
+            $name = $this->request->query['term'];
+            $results_district = $this->Districts->find('all', [
+                'conditions' => [ 'OR' => [
+                    //'name LIKE' => $name . '%',
+                    "MATCH(name) AGAINST ('{$name}' IN BOOLEAN MODE)"
+                ]]
+            ]);
+            $results_state = $this->States->find('all', [
+                'conditions' => [ 'OR' => [
+                    //'name LIKE' => $name . '%',
+                    "MATCH(name) AGAINST ('{$name}' IN BOOLEAN MODE)"
+                ]]
+            ]);
+            $resultsArr = [];
+            foreach ($results_district as $result) {
+                 $resultsArr[] =['label' => $result['name'], 'value' => $result['name']];
+            }
+            foreach ($results_state as $result) {
+                 $resultsArr[] =['label' => $result['name'], 'value' => $result['name']];
+            }
+            
+            echo json_encode($resultsArr);
+        } 
     }
 }

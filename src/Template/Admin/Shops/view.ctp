@@ -41,11 +41,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Phone') ?></th>
-            <td><?= $this->Number->format($shop->phone) ?></td>
+            <td><?= h($shop->phone) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Phonehome') ?></th>
-            <td><?= $this->Number->format($shop->phonehome) ?></td>
+            <td><?= h($shop->phonehome) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Contactperson') ?></th>
@@ -325,7 +325,7 @@
     <div class="related">
         <h4><?= __('Related Shop Items') ?></h4>
         <?php if (!empty($shop->shop_items)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table" cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Shop Id') ?></th>

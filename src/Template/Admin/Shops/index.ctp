@@ -36,7 +36,7 @@
         <tbody>
             <?php foreach ($shops as $shop): ?>
             <tr>
-                <td><?= $this->Number->format($shop->id) ?></td>
+                <td><?= $this->Html->link($this->Number->format($shop->id), ['controller' => 'ShopItems', 'action' => 'index', $shop->id]); ?></td>
                 <td><?= h($shop->code) ?></td>
                 <td><?= h($shop->name) ?></td>
                 <td><?= $shop->has('national') ? $this->Html->link($shop->national->name, ['controller' => 'Nationals', 'action' => 'view', $shop->national->id]) : '' ?></td>

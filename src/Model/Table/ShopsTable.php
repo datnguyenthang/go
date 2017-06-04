@@ -105,9 +105,11 @@ class ShopsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->notEmpty('code')
             ->allowEmpty('code');
 
         $validator
+            ->notEmpty('name')
             ->allowEmpty('name');
 
         $validator
@@ -118,11 +120,9 @@ class ShopsTable extends Table
             ->notEmpty('address');
 
         $validator
-            ->integer('phone')
             ->allowEmpty('phone');
 
         $validator
-            ->integer('phonehome')
             ->allowEmpty('phonehome');
 
         $validator

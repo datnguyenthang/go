@@ -29,7 +29,7 @@
             <tr>
                 <td><?= $this->Number->format($shopItem->id) ?></td>
                 <td><?= $shopItem->has('shop') ? $this->Html->link($shopItem->shop->name, ['controller' => 'Shops', 'action' => 'view', $shopItem->shop->id]) : '' ?></td>
-                <td><?= h($shopItem->tradetype) ?></td>
+                <td><?= $tradetypes[$shopItem->trade_type_id] ?></td>
                 <td><?= h($shopItem->brandname) ?></td>
                 <td><?= h($shopItem->productname) ?></td>
                 <td><?= $this->Html->link($shopItem->img, $this->Upload->url($shopItem, 'img'));?></td>

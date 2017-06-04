@@ -23,6 +23,27 @@
 }
 body { padding-top: 50px; }
 .container  { padding-top: 7%; }
+
+.center-find {
+    margin-top:10%;
+    //margin-bottom:35%;
+    position:relative;
+}
+
+/* FOR LIST GROUP RESULT*/
+ul.list-group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.list-group-item {
+    float: left;
+    border: 0 !important;
+    margin: 0px;
+    padding: 10px 0px;
+}
+
 .footer-distributed{
     background-color: #293339;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
@@ -31,7 +52,7 @@ body { padding-top: 50px; }
 	text-align: left;
 	font: bold 16px sans-serif;
 
-	padding: 55px 50px;
+	padding: 20px 50px;
 	margin-top: 80px;
 }
 
@@ -198,14 +219,9 @@ body { padding-top: 50px; }
 	width: 100%;
 	text-align: left;
 	font: bold 16px sans-serif;
-	padding: 35px 30px;
+	padding: 8px 30px;
 }
 .footer_secondary-wrapper .row{
     //left: 50%;
     //position: absolute;
-}
-.center-find {
-    margin-top:18%;
-    margin-bottom:35%;
-    position:relative;
 }
