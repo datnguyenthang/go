@@ -48,6 +48,7 @@
                       <div class="modal-body">
                         <p>Số điện thoại liên hệ : <strong><?= h($shop['phone']) ?></strong></p>
                         <p>Tên người liên hệ : <strong><?= h($shop['contactperson']) ?></strong></p>
+                        <p><a href="tel:<?= h($shop['phone']) ?>" class='btn btn-primary'>Gọi liên hệ</a><p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng cửa sổ</button>
@@ -120,13 +121,13 @@
             url: '/shops/rating',
             data: 'itemid='+attrVal+'&ratingPoints='+val,
             dataType: 'json',
-            success : function(data) {
+            success : function(data) { console.log(data);
                 if (data.status == 'ok') {
                     alert('Bạn vừa đánh giá '+val+' sao');
                     $('#avgrat').text(data.average_rating);
                     $('#totalrat').text(data.rating_number);
                 } else if (data.status == 'voted') {
-                    alert('Bạn đã đánh giá rồi!');
+                    alert('Bạn đã đánh giá rồi, để tiếp tục đánh giá vui lòng quay lại sau 24h!');
                 } else {
                     alert('Có lỗi xảy ra, vui lòng thử lại.');
                 }

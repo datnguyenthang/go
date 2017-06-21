@@ -231,3 +231,6 @@ ul.list-group:after {
     //left: 50%;
     //position: absolute;
 }
+.overall-rating {
+    font-weight: bold;
+}

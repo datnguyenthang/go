@@ -19,6 +19,7 @@ use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\ORM\TableRegistry;
+use Cake\Controller\Component\CookieComponent;
 /**
  * Shops Controller
  *
@@ -76,56 +77,55 @@ class ShopsController extends AppController
     }
     public function rating() {
         if ($this->request->is('ajax')) {
-        
-            if ($this->Cookie->read('isvote')) {
-                $ratingRow = new STDClass();
-                $ratingRow->status = 'voted';
-                echo json_encode($ratingRow);
-                return;
-            }
+            $this->autoRender = false;
             $ratingsTable = TableRegistry::get('Ratings');
             $ratingObject = $ratingsTable->newEntity();
-
-            $this->autoRender = false;
             $this->loadModel('Ratings');
-            $shopid = $this->request->query['itemid'];
-            $point = $this->request->query['ratingPoints'];
-            $ratingNum = 1;
-            $rating = $this->Ratings->find()
-                            ->hydrate(true)
-                            ->where(['Ratings.item_id' => $shopid])->first();
-            if (empty($rating)) {
-                $ratingObject->item_id = $shopid;
-                $ratingObject->rating_number = 1;
-                $ratingObject->total_points = $point;
-                $ratingObject->created = date('Y-m-d H:i:s');
-                $ratingObject->modified = date('Y-m-d H:i:s');
-                $ratingsTable->save($ratingObject);
+            if ($this->Cookie->read('isvote')) {
+                $ratingRow = $ratingsTable->newEntity();
+                $ratingRow->status = 'voted';
+                echo json_encode($ratingRow);
             } else {
-                $rating->rating_number += 1;
-                $rating->total_points += $point;
-                $ratingsTable->save($rating);
-            }
-            $ratingRow = $this->Ratings->find()
-                            ->hydrate(true)
-                            ->where(['Ratings.item_id' => $shopid])->first();
-
-            $this->Cookie->configKey('isvote', [
-                    'expires' => '1 day',
-                    'httpOnly' => true,
-                    'domain' => 'localhost'
-                ]);
-            if ($ratingRow){
-                $ratingRow->average_rating = ROUND(($ratingRow->total_points / $ratingRow->rating_number),1);
-                $ratingRow->status = 'ok';
                 
-                $this->Cookie->write('isvote', true);
-            } else {
-                $ratingRow->status = 'err';
-            }
+                $shopid = $this->request->query['itemid'];
+                $point = $this->request->query['ratingPoints'];
+                $ratingNum = 1;
+                $rating = $this->Ratings->find()
+                                ->hydrate(true)
+                                ->where(['Ratings.item_id' => $shopid])->first();
+                if (empty($rating)) {
+                    $ratingObject->item_id = $shopid;
+                    $ratingObject->rating_number = 1;
+                    $ratingObject->total_points = $point;
+                    $ratingObject->created = date('Y-m-d H:i:s');
+                    $ratingObject->modified = date('Y-m-d H:i:s');
+                    $ratingsTable->save($ratingObject);
+                } else {
+                    $rating->rating_number += 1;
+                    $rating->total_points += $point;
+                    $ratingsTable->save($rating);
+                }
+                $ratingRow = $this->Ratings->find()
+                                ->hydrate(true)
+                                ->where(['Ratings.item_id' => $shopid])->first();
 
-            //Return json formatted rating data
-            echo json_encode($ratingRow);
+                $this->Cookie->configKey('isvote', [
+                        'path' => '/',
+                        'expires' => '1 day'
+                    ]);
+                if ($ratingRow){
+                    $ratingRow->average_rating = ROUND(($ratingRow->total_points / $ratingRow->rating_number),1);
+                    $ratingRow->status = 'ok';
+                    
+                    $this->Cookie->write('isvote', '1');
+                    
+                } else {
+                    $ratingRow->status = 'err';
+                }
+
+                //Return json formatted rating data
+                echo json_encode($ratingRow);
+            }
         }
 
     }
