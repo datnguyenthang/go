@@ -21,7 +21,13 @@
     padding-top: 10px;
     padding-bottom: 10px;}
 }
-body { padding-top: 50px; }
+body { 
+    padding-top: 50px;
+    background-color: #cff9ec;
+}
+.list-group li{
+    background-color: #cff9ec;
+}
 .container  { padding-top: 7%; }
 
 .center-find {

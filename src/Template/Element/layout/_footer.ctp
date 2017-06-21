@@ -20,18 +20,19 @@
     <div class="footer-center">
         <div>
             <i class="fa fa-map-marker"></i>
-            <p><span>Địa chỉ <a href="#">Quận 1</a> | <a href="#">Sài gòn</a></span>
+            <!--<p><span>Địa chỉ <a href="#">Quận 1</a> | <a href="#">Tp.Hồ Chí Minh</a></span>-->
+            <p><span>Địa chỉ <a href="#">Quận 1</a> | <a href="#">Tp.Hồ Chí Minh</a>
             <a href="#">Bản đồ</a></p>
         </div>
 
         <div>
             <i class="fa fa-phone"></i>
-            <p><span>Liên hệ đặt cửa hàng : 123-456-789</span><br>
+            <p><span>Liên hệ đặt cửa hàng : 088.8182.088</span><br>
         </div>
                 
         <div>
             <i class="fa fa-phone"></i>
-            <p><span>Liên hệ : 987-65-6589</span></br>
+            <p><span>Liên hệ : 088.8182.088</span></br>
         </div>
     </div>
     <div class="footer-right">
@@ -39,7 +40,7 @@
             <span class="hidden-xs">
                 <h3><a href="#"><img class="img-responsive img-rounded" style="width:48%;" src="/img/goolutu.jpg"</span></h3></a>
                     <p class="footer-links">
-                        <a href="#">Báo cáo</a><p></p>
+                        <a href="/sites/terms-of-service">Điều khoản sử dụng</a><p></p>
                         <a href="#">Phản hồi</a><p></p>
                     </p>
             </span>

@@ -63,6 +63,11 @@ class SitesController extends AppController {
         if ($this->request->is('get') || $searchtxt) {
             $query = $this->paginate(
                 $shops->find()
+                    ->select(['Shops.id', 'Shops.code', 'Shops.name',
+                              'Shops.description', 'Shops.address',
+                              'Shops.phone', 'Shops.phonehome', 'Shops.contactperson',
+                              'Shops.img', 'Shops.type_shop_id', 'r.rating_number',
+                              'r.total_points'])
                     //->hydrate(false)
                     ->join([
                         'd' => [
@@ -74,6 +79,11 @@ class SitesController extends AppController {
                             'table' => 'states',
                             'type' => 'LEFT',
                             'conditions' => 's.id = Shops.state_id',
+                        ],
+                        'r' => [
+                            'table' => 'ratings',
+                            'type' => 'LEFT',
+                            'conditions' => 'r.item_id = Shops.id',
                         ]
                     ])
                     ->where(['d.name =' => $searchtxt])
@@ -83,6 +93,10 @@ class SitesController extends AppController {
         $this->request->data['name'] = $searchtxt;
         $this->set(compact('query'));
         $this->set('_serialize', ['query']);
+    }
+    
+    public function termsOfService() {
+        
     }
     public function autocomplete() {
         if ($this->request->is('ajax')) {

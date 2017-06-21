@@ -90,6 +90,10 @@ class ShopsTable extends Table
         $this->hasMany('ShopItems', [
             'foreignKey' => 'shop_id'
         ]);
+        $this->hasOne('Ratings', [
+            'foreignKey' => 'item_id',
+            'joinType' => 'LEFT'
+        ]);
     }
 
     /**

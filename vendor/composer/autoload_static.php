@@ -42,6 +42,10 @@ class ComposerStaticInitcf6af8c342c706855bf1b79d56407fed
             'Seld\\JsonLint\\' => 14,
             'Seld\\CliPrompt\\' => 15,
         ),
+        'R' => 
+        array (
+            'Ratings\\' => 8,
+        ),
         'P' => 
         array (
             'Psy\\' => 4,
@@ -147,6 +151,10 @@ class ComposerStaticInitcf6af8c342c706855bf1b79d56407fed
         'Seld\\CliPrompt\\' => 
         array (
             0 => __DIR__ . '/..' . '/seld/cli-prompt/src',
+        ),
+        'Ratings\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dereuromark/cakephp-ratings/src',
         ),
         'Psy\\' => 
         array (

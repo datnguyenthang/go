@@ -2,10 +2,12 @@
       use Cake\Routing\Router; 
       use Cake\Utility\Text;
 ?>
+<?php echo $this->Html->css('rating.css');?>
+<?php echo $this->Html->script('rating.js');?>
 <div class="center-find" >
     <div>
         <h1>
-            <span>Tìm nơi thuê xe du lịch lý tưởng với giá tốt nhất</span>
+            <span>Tìm nơi thuê xe với giá tốt nhất</span>
         </h1>
     </div>
 
@@ -48,6 +50,27 @@
                     <div class="col-md-8 px-3">
                         <div class="card-block px-3">
                             <h4 class="card-title"><?= h($shop['name']) ?></h4>
+                            <input name="rating" value="0" class="rating" id="rating_star" type="hidden" itemID="1" />
+                            <div class="overall-rating">
+                                <?php if (isset($shop['r']['rating_number'])):?>
+                                    <span id="avgrat">
+                                        <?php echo ROUND(($shop['r']['total_points'] / $shop['r']['rating_number']), 1);?>
+                                    </span>
+                                    <?php 
+                                        $average = ROUND(($shop['r']['total_points'] / $shop['r']['rating_number']), 0);
+                                        if ($average == 5) echo 'Xuất sắc';
+                                        if ($average == 4) echo 'Rất tốt';
+                                        if ($average == 3) echo 'Tốt';
+                                        if ($average == 2) echo 'Không tốt';
+                                        if ($average == 1) echo 'Tệ';
+                                    ?>
+                                    (<span id="totalrat"><?php echo $shop['r']['rating_number'];?></span> nhận xét)
+                                <?php else : ?>
+                                    Chưa được đánh giá.
+                                    <!--(Average Rating <span id="avgrat"><?php echo 0; ?></span>
+                                    Based on <span id="totalrat"><?php echo 0; ?></span>  rating)-->
+                                <?php endif; ?>
+                            </div>
                             <!--<strong><?= h($shop['phone']) ?></strong>-->
                             <p class="card-text"><?= h($shop['address']) ?></p>
                             <p class="card-text"><?= h(Text::truncate($shop['description'], 
@@ -85,4 +108,19 @@
         source:'<?php echo Router::url(array('controller' => 'Sites', 'action' => 'autocomplete')); ?>',
         minLength: 2
     });
+    $(function() {
+        $(".rating").each(function(){
+            $(this).codexworld_rating_widget({
+                starLength: '5',
+                initialValue: Math.round($(this).parents('.card-block').find('#avgrat').text()),
+                callbackFunctionName: 'processRating',
+                imageDirectory: 'img/',
+                inputAttr: 'itemID'
+            });
+        })
+    });
+    function processRating(val, attrVal){
+        alert('Vui lòng vào phần chi tiết để đánh giá cửa hàng!!!!');
+        return;
+    }
 </script>

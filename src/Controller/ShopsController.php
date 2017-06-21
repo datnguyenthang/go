@@ -27,12 +27,22 @@ use Cake\ORM\TableRegistry;
 class ShopsController extends AppController
 {
     public $helpers = ['Dala00/Upload.Upload'];
+    
+    public function initialize() {
+        parent::initialize();
+
+        $this->loadComponent('RequestHandler');
+        $this->loadComponent('Flash');
+        $this->loadComponent('Cookie');
+    }
+
     /**
      * Index method
      *
      * @return \Cake\Network\Response|null
      */
     public function index() {
+        $this->loadModel('Ratings');
         $code = $this->request->query['code'];
         $shop = $this->Shops->find()
                             //->hydrate(true)
@@ -40,7 +50,11 @@ class ShopsController extends AppController
                             ->contain(['Nationals', 'States', 'Districts', 'TypeShops', 'Monies', 'OrderDetails', 'Pictures', 'Products', 'ShopCountViews', 'ShopInfos', 'ShopItems'])
                             ->toArray();
 //var_dump($shop[0]);
+        $ratingRow = $this->Ratings->find()
+                            ->hydrate(true)
+                            ->where(['Ratings.item_id' => $shop[0]['id']])->first();
         $this->set('shop', $shop[0]);
+        $this->set('ratingRow', $ratingRow);
         $this->set('_serialize', ['shop']);
     }
 
@@ -60,5 +74,59 @@ class ShopsController extends AppController
         $this->set('shop', $shop);
         $this->set('_serialize', ['shop']);
     }
+    public function rating() {
+        if ($this->request->is('ajax')) {
+        
+            if ($this->Cookie->read('isvote')) {
+                $ratingRow = new STDClass();
+                $ratingRow->status = 'voted';
+                echo json_encode($ratingRow);
+                return;
+            }
+            $ratingsTable = TableRegistry::get('Ratings');
+            $ratingObject = $ratingsTable->newEntity();
 
+            $this->autoRender = false;
+            $this->loadModel('Ratings');
+            $shopid = $this->request->query['itemid'];
+            $point = $this->request->query['ratingPoints'];
+            $ratingNum = 1;
+            $rating = $this->Ratings->find()
+                            ->hydrate(true)
+                            ->where(['Ratings.item_id' => $shopid])->first();
+            if (empty($rating)) {
+                $ratingObject->item_id = $shopid;
+                $ratingObject->rating_number = 1;
+                $ratingObject->total_points = $point;
+                $ratingObject->created = date('Y-m-d H:i:s');
+                $ratingObject->modified = date('Y-m-d H:i:s');
+                $ratingsTable->save($ratingObject);
+            } else {
+                $rating->rating_number += 1;
+                $rating->total_points += $point;
+                $ratingsTable->save($rating);
+            }
+            $ratingRow = $this->Ratings->find()
+                            ->hydrate(true)
+                            ->where(['Ratings.item_id' => $shopid])->first();
+
+            $this->Cookie->configKey('isvote', [
+                    'expires' => '1 day',
+                    'httpOnly' => true,
+                    'domain' => 'localhost'
+                ]);
+            if ($ratingRow){
+                $ratingRow->average_rating = ROUND(($ratingRow->total_points / $ratingRow->rating_number),1);
+                $ratingRow->status = 'ok';
+                
+                $this->Cookie->write('isvote', true);
+            } else {
+                $ratingRow->status = 'err';
+            }
+
+            //Return json formatted rating data
+            echo json_encode($ratingRow);
+        }
+
+    }
 }

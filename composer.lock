@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1b84472b4714978d1f17a29be9e8b5a",
+    "content-hash": "6e36fa3d3268b0c423d22d62366ee5fe",
     "packages": [
         {
             "name": "aura/intl",
@@ -320,6 +320,57 @@
                 "upload"
             ],
             "time": "2017-01-27T12:44:42+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-ratings",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-ratings.git",
+                "reference": "6dc1700357e0f87b3519c7fa73756e5c105686ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/6dc1700357e0f87b3519c7fa73756e5c105686ee",
+                "reference": "6dc1700357e0f87b3519c7fa73756e5c105686ee",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0",
+                "php": ">=5.4"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Ratings\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "email": "euromark@web.de",
+                    "homepage": "https://github.com/dereuromark/cakephp-ratings",
+                    "role": "maintainer"
+                },
+                {
+                    "name": "Cake Development Corporation",
+                    "email": "team@cakedc.com",
+                    "homepage": "http://cakedc.com",
+                    "role": "original maintainer"
+                }
+            ],
+            "description": "Ratings Plugin for CakePHP.",
+            "homepage": "http://github.com/dereuromark/cakephp-ratings",
+            "keywords": [
+                "cakephp",
+                "plugin",
+                "ratings"
+            ],
+            "time": "2016-09-27 14:53:32"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -2038,6 +2089,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "dereuromark/cakephp-ratings": 20,
         "psy/psysh": 0
     },
     "prefer-stable": true,

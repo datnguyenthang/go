@@ -2098,5 +2098,58 @@
             "orm",
             "upload"
         ]
+    },
+    {
+        "name": "dereuromark/cakephp-ratings",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dereuromark/cakephp-ratings.git",
+            "reference": "6dc1700357e0f87b3519c7fa73756e5c105686ee"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/6dc1700357e0f87b3519c7fa73756e5c105686ee",
+            "reference": "6dc1700357e0f87b3519c7fa73756e5c105686ee",
+            "shasum": ""
+        },
+        "require": {
+            "cakephp/cakephp": "~3.0",
+            "php": ">=5.4"
+        },
+        "time": "2016-09-27T14:53:32+00:00",
+        "type": "cakephp-plugin",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Ratings\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mark Scherer",
+                "email": "euromark@web.de",
+                "homepage": "https://github.com/dereuromark/cakephp-ratings",
+                "role": "maintainer"
+            },
+            {
+                "name": "Cake Development Corporation",
+                "email": "team@cakedc.com",
+                "homepage": "http://cakedc.com",
+                "role": "original maintainer"
+            }
+        ],
+        "description": "Ratings Plugin for CakePHP.",
+        "homepage": "http://github.com/dereuromark/cakephp-ratings",
+        "keywords": [
+            "cakephp",
+            "plugin",
+            "ratings"
+        ]
     }
 ]
